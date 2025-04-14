@@ -26,24 +26,29 @@ class Array
         virtual const char* what() const throw();
     };
 };
-template <typename T>
-Array<T>::Array() : _data(nullptr), _size(0) {}
 
+/*------------- Creates an empty array---------------------------*/
+template <typename T>
+Array<T>::Array() : _data(NULL), _size(0) {}
+
+/*------------ Creates an array of n elements initialized by default-----------*/
 template <typename T>
 Array<T>::Array(unsigned int size) : _data(new T[size]()), _size(size) {}
 
+/*-------------------------------------------------------------*/
 template <typename T>
 Array<T>::~Array()
 {
 	delete[] _data;
 }
+/*---------------------- Contructor by copy------------------*/
 
 template <typename T>
-Array<T>::Array(const Array<T> &other) : _data(nullptr), _size(0)
+Array<T>::Array(const Array<T> &other) : _data(NULL), _size(0)
 {
 	*this = other;
 }
-
+/*-------------------------------------------------------------*/
 template <typename T>
 Array<T> &Array<T>::operator=(const Array<T> &other)
 {
@@ -51,13 +56,13 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 	{
 		delete[] _data;
 		_size = other._size;
-		_data = (_size > 0) ? new T[_size]() : nullptr;
+		_data = (_size > 0) ? new T[_size]() : NULL;
 		for (size_t i = 0; i < _size; i++)
 			_data[i] = other._data[i];
 	}
 	return *this;
 }
-
+/*----------------------------------------------------------*/
 template <typename T>
 const T &Array<T>::operator[](unsigned int index) const
 {
@@ -66,7 +71,7 @@ const T &Array<T>::operator[](unsigned int index) const
 	else
 		return _data[index];
 }
-
+/*---------------------------------------------------------*/
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
@@ -75,13 +80,13 @@ T &Array<T>::operator[](unsigned int index)
 	else
 		return _data[index];
 }
-
+/*----------------function Size-----------------------------*/
 template <typename T>
 unsigned int  Array<T>::size() const
 {
 	return _size;
 }
-
+/*--------------Execption----------------------------------*/
 template <typename T>
 const char*	Array<T>::OutOfRange::what() const throw()
 {
