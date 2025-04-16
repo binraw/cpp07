@@ -9,8 +9,9 @@ template <typename T>
 	void incrementElement(T& value)
 
 	{
-		value++;
-		std::cout << "value tab +1 : " << value << std::endl;
+		int copy_value = value;
+		copy_value++;
+		std::cout << "value tab +1 : " << copy_value << std::endl;
 	};
 
 int main() {
@@ -19,7 +20,9 @@ int main() {
 
     iter(arr, len, printElement);
 
-    iter(arr, len, incrementElement<int>);
+	iter(arr, len, incrementElement<int>);
+
+    iter(arr, len, incrementElement<const int>);
 
     return 0;
 }
